@@ -1,6 +1,6 @@
 // import Keep from '../../../interfaces/keep'
 import { memo } from 'react'
-import { Keep, KeepListProps } from '../../../interfaces/keep'
+import { KeepListProps } from '../../../interfaces/keep'
 
 function _KeepList({ keeps, onDeleteKeep, onUpdateKeep } : KeepListProps ) {
     return (
@@ -11,6 +11,7 @@ function _KeepList({ keeps, onDeleteKeep, onUpdateKeep } : KeepListProps ) {
                 <h1>title: {keep.title}</h1>
                 <h3>my id: {keep._id}</h3>
                 <button onClick={() => onDeleteKeep(keep._id!.toString())}>delete me</button>
+                <button onClick={() => onUpdateKeep(keep._id!.toString())}>or look at my details</button>
             </article>
 
                 )}

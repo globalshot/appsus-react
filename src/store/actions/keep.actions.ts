@@ -13,6 +13,8 @@ export function loadKeeps() {
         keeps,
       };
       dispatch(action);
+      // await dispatch(action); got suggested to try those 2
+      // return keeps;
     } catch (err) {
       console.log('err', err);
     }

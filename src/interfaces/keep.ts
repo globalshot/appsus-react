@@ -8,5 +8,6 @@ export interface Keep {
 export interface KeepListProps {
     keeps: Keep[];
     onDeleteKeep: (id: string) => void;
-    onUpdateKeep: (id: string, updatedKeep: Keep) => void;
+    onUpdateKeep: (id: string) => void;
+    // onUpdateKeep: (id: string, updatedKeep: Keep) => void;
 }

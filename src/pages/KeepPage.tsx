@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { KeepList } from "../apps/keep/pages/KeepList";
 import { Keep } from "../interfaces/keep";
 import { RootState } from '../interfaces/rootState.store';
-import { useDispatch } from "react-redux";
-import { loadKeeps } from '../store/actions/contact.actions';
+import { loadKeeps } from '../store/actions/keep.actions';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export function KeepPage() {
     
@@ -29,8 +29,10 @@ export function KeepPage() {
     const keeps: Keep[] = useSelector((storeState: RootState) => storeState.keepModule.keeps || [])
     const dispatch = useDispatch()
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        dispatch(loadKeeps())
+        dispatch(loadKeeps() as any)
     }
     )
 
@@ -40,8 +42,9 @@ export function KeepPage() {
         
       };
     
-      const handleUpdateKeep = (id: string, updatedKeep: Keep) => {
+      const handleUpdateKeep = (id: string) => {
         // Implement update functionality here...
+        navigate({ pathname: `/keep/edit/${id}`})
       };
       if (!keeps) {
         return <div>Loading...</div>;
@@ -49,6 +52,7 @@ export function KeepPage() {
     return (
         <div>
         <div>im keep page</div>
+        <NavLink to='/keep/edit/:id?'>add keep</NavLink>
         <KeepList keeps={keeps}
         onDeleteKeep={handleDeleteKeep}
         onUpdateKeep={handleUpdateKeep}

@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { AppHeader } from './components/AppHeader';
 import { MailPage } from './pages/MailPage';
 import { KeepPage } from './pages/KeepPage';
+import { KeepEdit } from './apps/keep/pages/KeepEdit';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <AppHeader></AppHeader>
       </header>
       <Routes>
+        <Route path='/keep/edit/:keepId?' element={<KeepEdit/>} />
         <Route path='/keep' element={<KeepPage/>} />
         <Route path='/mail' element={<MailPage/>} />
         <Route path='/' element={<HomePage />} />
