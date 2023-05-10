@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import KeepService from '../../services/keep.service';
-import { FilterBy, KeepActionTypes, SET_FILTER_BY, SET_KEEPS, REMOVE_KEEP } from '../../interfaces/keep.store';
+import { FilterBy, KeepActionTypes, SET_FILTER_BY, SET_KEEPS, REMOVE_KEEP, ADD_KEEP } from '../../interfaces/keep.store';
+import { Keep } from '../../interfaces/keep';
 
 const keepService = KeepService;
 
@@ -21,18 +22,30 @@ export function loadKeeps() {
   };
 }
 
+export function copyKeep(keep: Keep) {
+  return async (dispatch: Dispatch<KeepActionTypes>) => {
+    try {
+      const newKeep = await KeepService.saveKeep(keep);
+      const action: KeepActionTypes = { type: ADD_KEEP, keep: newKeep };
+      dispatch(action);
+    } catch (err) {
+      console.log('err', err);
+    }
+  };
+}
+
 export function removeKeep(keepId: string) {
   return async (dispatch: Dispatch<KeepActionTypes>) => {
     try {
       await keepService.removeKeep(keepId);
       const action: KeepActionTypes = { type: REMOVE_KEEP, keepId };
       dispatch(action);
-      return 'removed';
     } catch (err) {
       console.log('err', err);
     }
   };
 }
+
 
 export function setFilterBy(filterBy: FilterBy) {
   return (dispatch: Dispatch<KeepActionTypes>) => {

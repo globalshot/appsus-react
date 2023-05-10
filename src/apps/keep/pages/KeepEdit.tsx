@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import KeepService from "../../../services/keep.service"
 import { Keep } from "../../../interfaces/keep";
 
 export function KeepEdit() {
-    const [keep, setKeep] = useState<Keep>();
+    const [keep, setKeep] = useState<Keep>(KeepService.getEmptyKeep());
     // const { id } = useParams()
     // const keep = await KeepService.getKeepById(id)
     // var keep
     const { keepId } = useParams()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function getSingleKeep(id: any) {
@@ -24,17 +26,43 @@ export function KeepEdit() {
         getSingleKeep(keepId)
     }, [keepId])
 
+    async function keepSaved(event:any) {
+        event.preventDefault();
+        try{
+            if (keep._id) {
+                keep._id = keep._id.toString();
+            }            
+            await KeepService.saveKeep(keep)
+            navigate('/keep')
+        }
+        catch(error) {
+            console.log(error);
+            
+        }
+    }
+
+    const handleInputChange = (event: any) => {
+        const { name, value } = event.target;
+        setKeep(prevKeep => ({
+          ...prevKeep,
+          [name]: value,
+        }));
+      };
+
     if (!keep) return <div>loading</div>
     return (
         <div>
             <div>
-                hehe im edit page
-            </div>
-            <div>
-                {keep._id}
-            </div>
-            <div>
-                {keep.title}
+                <form onSubmit={keepSaved}>
+                    <input 
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={keep.title}
+                    onChange={handleInputChange} />
+
+                    <button>Save</button>
+                </form>
             </div>
         </div>
     )

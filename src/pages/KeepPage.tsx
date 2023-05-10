@@ -3,60 +3,59 @@ import { useSelector, useDispatch } from "react-redux";
 import { KeepList } from "../apps/keep/pages/KeepList";
 import { Keep } from "../interfaces/keep";
 import { RootState } from '../interfaces/rootState.store';
-import { loadKeeps } from '../store/actions/keep.actions';
+import { copyKeep, loadKeeps, removeKeep } from '../store/actions/keep.actions';
 import { NavLink, useNavigate } from 'react-router-dom';
+import KeepService from '../services/keep.service';
+
 
 export function KeepPage() {
-    
-    // var keeps: Keep[]= [
-    //     {
-    //         _id: 'funny',
-    //         title: 'im an title'
-    //     },
-    //     {
-    //         _id: '1g123g',
-    //         title: 'im 2nd'
-    //     },
-    //     {
-    //         _id: '662g34',
-    //         title: 'im 3nd'
-    //     },
-    //     {
-    //         _id: 'gag3sx',
-    //         title: 'i wanna die'
-    //     },
-    // ]
-    const keeps: Keep[] = useSelector((storeState: RootState) => storeState.keepModule.keeps || [])
-    const dispatch = useDispatch()
+  const keeps: Keep[] = useSelector((storeState: RootState) => storeState.keepModule.keeps || [])
+  const dispatch = useDispatch()
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        dispatch(loadKeeps() as any)
+  useEffect(() => {
+    dispatch(loadKeeps() as any)
+  },
+  )
+
+  const handleDeleteKeep = async (id: string) => {
+    try {
+      await KeepService.removeKeep(id)
+      dispatch(removeKeep(id) as any);
     }
-    )
+    catch (err) {
+      console.log(err);
+    }
+  };
 
-    const handleDeleteKeep = (id: string) => {
-        // Implement delete functionality here...
-        console.log(`did you just try to delete `+ id);
-        
-      };
-    
-      const handleUpdateKeep = (id: string) => {
-        // Implement update functionality here...
-        navigate({ pathname: `/keep/edit/${id}`})
-      };
-      if (!keeps) {
-        return <div>Loading...</div>;
-      }
-    return (
-        <div>
-        <div>im keep page</div>
-        <NavLink to='/keep/edit/:id?'>add keep</NavLink>
-        <KeepList keeps={keeps}
+  const handleCopyKeep = async (keep: Keep) => {
+    try{
+      var keepCopy = {...keep}
+      delete keepCopy._id
+      await KeepService.saveKeep(keepCopy)
+      dispatch(copyKeep(keepCopy) as any)
+    }
+    catch(err){
+      console.log(err);
+      
+    }
+  }
+  const handleUpdateKeep = (id: string) => {
+    navigate({ pathname: `/keep/edit/${id}` })
+  };
+  if (!keeps) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div>
+      <div>im keep page</div>
+      <NavLink to='/keep/edit/:id?'>add keep</NavLink>
+      <KeepList keeps={keeps}
         onDeleteKeep={handleDeleteKeep}
         onUpdateKeep={handleUpdateKeep}
-        ></KeepList>
-        </div>
-    )
+        onCopyKeep={handleCopyKeep}
+      ></KeepList>
+    </div>
+  )
 }

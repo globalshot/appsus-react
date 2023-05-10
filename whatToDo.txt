@@ -1,0 +1,15 @@
+create new notes, done
+delete notes, done
+copy notes, done
+make different notes,
+filter types,
+side bar can be nice,
+more styling,
+more function like trash or archive,
+pin,
+make option to make it single row or multiple,
+background color,
+keep color or image,
+
+then start mail,
+when u finish mail make keep go to mail too
