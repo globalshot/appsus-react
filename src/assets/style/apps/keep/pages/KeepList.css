@@ -1,0 +1,22 @@
+/* .keep-preview{
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+.keep-preview {
+    width: 240px;
+    border: 1px solid #e0e0e0;
+    break-inside: avoid;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.keep-title{
+    font-size: 20px;
+}

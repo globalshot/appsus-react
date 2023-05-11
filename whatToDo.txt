@@ -1,8 +1,8 @@
-create new notes, done
-delete notes, done
-copy notes, done
+create new notes,  done
+delete notes,  done
+copy notes,  done
 make different notes,
-filter types,
+filter types,  
 side bar can be nice,
 more styling,
 more function like trash or archive,

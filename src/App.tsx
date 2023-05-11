@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './assets/style/global.css'
 import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { AppHeader } from './components/AppHeader';

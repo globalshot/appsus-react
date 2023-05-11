@@ -80,8 +80,8 @@ function getKeeps(filterBy: FilterBy | null = null): Promise<Keep[]> {
         if (filterBy && filterBy.title) {
             keepsToReturn = filter(filterBy.title);
         }
-        // resolve(keepsToReturn);//not sorted
-        resolve(sort(keepsToReturn));//sorted by abc
+        resolve(keepsToReturn);//not sorted
+        // resolve(sort(keepsToReturn));//sorted by abc
     });
 }
 

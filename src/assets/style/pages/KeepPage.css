@@ -1,0 +1,37 @@
+
+.keep-container{
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    padding-inline: 20px;
+    gap: 30px;
+}
+
+.keep-list {
+    grid-column: 1;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+/* .keep-list-container{
+    display: flex;
+    column-count: 3;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+} */
+
+.keep-list-container{
+    column-count: 4;
+    list-style-type: none;
+    gap: 10px;
+    padding-inline-start: 0;
+}
+
+
+.keep-add{
+    grid-column: 1;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
