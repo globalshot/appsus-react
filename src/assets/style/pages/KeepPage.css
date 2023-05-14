@@ -22,7 +22,7 @@
 } */
 
 .keep-list-container{
-    column-count: 4;
+    column-count: 5;
     list-style-type: none;
     gap: 10px;
     padding-inline-start: 0;

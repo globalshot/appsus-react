@@ -1,14 +1,7 @@
+import { Keep } from '../interfaces/keep';
+import { FilterBy } from '../interfaces/keep.store';
 import { storageService } from './storage.service';
 
-export interface Keep {
-    _id?: string;
-    title: string;
-    [key: string]: any;
-}
-
-export interface FilterBy {
-    title?: string;
-}
 
 const KeepService = {
     getKeeps,
@@ -24,31 +17,38 @@ const STORAGE_KEY = 'keeps';
 const gDefaultKeeps: Keep[] = [
     {
         _id: 'funny',
-        title: 'im an title'
+        title: 'im an title',
+        description: ''
     },
     {
         _id: '1g123g',
-        title: 'im 2nd'
+        title: 'im 2nd',
+        description: ''
     },
     {
         _id: '662g34',
-        title: 'im 3nd'
+        title: 'im 3nd',
+        description: ''
     },
     {
         _id: 'gag3sx',
-        title: 'i wanna die'
+        title: 'i wanna die',
+        description: ''
     },
     {
         _id: '1g23g',
-        title: 'i dont rlly want to die'
+        title: 'i dont rlly want to die',
+        description: ''
     },
     {
         _id: 'aae3s',
-        title: 'we gonna fly somehow'
+        title: 'we gonna fly somehow',
+        description: ''
     },
     {
         _id: 'itest',
-        title: 'welp im testing'
+        title: 'welp im testing',
+        description: ''
     },
 ];
 
@@ -109,6 +109,7 @@ function _updateKeep(keep: Keep): Promise<Keep> {
         if (index !== -1) {
             gKeeps[index] = keep;
         }
+        storageService.store(STORAGE_KEY, gKeeps);
         resolve(keep);
     });
 }
@@ -121,21 +122,24 @@ function _addKeep(keep: Keep): Promise<Keep> {
 }
 
 function saveKeep(keep: Keep): Promise<Keep> {
+    console.log('keep before saving', keep);
     return keep._id ? _updateKeep(keep) : _addKeep(keep);
 }
 
 function getEmptyKeep(): Keep {
     return {
         title: '',
+        description: ''
     };
 }
 
 function filter(title: string) {
     title = title.toLocaleLowerCase()
-    return gKeeps.filter(keep => {
-        return keep.name.toLocaleLowerCase().includes(title) ||
-            keep.phone.toLocaleLowerCase().includes(title) ||
-            keep.email.toLocaleLowerCase().includes(title)
+    return gKeeps.filter(keep => {//dont change this filter
+        // return keep.name.toLocaleLowerCase().includes(title) ||
+        //     // keep.phone.toLocaleLowerCase().includes(title) ||
+        //     keep.description?.toLocaleLowerCase().includes(title)
+        return keep
     })
 }
 

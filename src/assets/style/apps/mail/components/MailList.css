@@ -1,0 +1,10 @@
+
+.mail-preview{
+    display: flex;
+    flex-direction: row;
+    padding-block: 10px;
+}
+
+.category-toggle{
+    margin-inline: 10px;
+}

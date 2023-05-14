@@ -4,6 +4,8 @@
 
 html {
   height: 100%;
+  padding-inline: 20px;
+  padding-block: 5px;
 }
 
 body {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { KeepList } from "../apps/keep/pages/KeepList";
+import { KeepList } from "../apps/keep/components/KeepList";
 import { Keep } from "../interfaces/keep";
 import { RootState } from '../interfaces/rootState.store';
 import { copyKeep, loadKeeps, removeKeep, setFilterBy } from '../store/actions/keep.actions';
@@ -21,6 +21,10 @@ export function KeepPage() {
       return false
     }
     // Add more filters as needed
+    if (filterBy.title && keep.description && keep.description.indexOf(filterBy.title) === -1) {
+      return false
+    }
+    
     return true
   })
   const handleFilterChange = (filterBy: FilterBy) => {

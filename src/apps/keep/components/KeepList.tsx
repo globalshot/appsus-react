@@ -12,7 +12,7 @@ function _KeepList({ keeps, onDeleteKeep, onUpdateKeep, onCopyKeep }: KeepListPr
                         <h1 className='keep-title'>title: {keep.title}</h1>
                     </div>
                     <div>
-                        <h3>my id: {keep._id}</h3>
+                        <h3>my description: {keep.description}</h3>
                     </div>
                     <div>
                         <button onClick={() => onDeleteKeep(keep._id!.toString())}>delete me</button>

@@ -26,40 +26,49 @@ export function KeepEdit() {
         getSingleKeep(keepId)
     }, [keepId])
 
-    async function keepSaved(event:any) {
+    async function keepSaved(event: any) {
         event.preventDefault();
-        try{
+        try {
             if (keep._id) {
                 keep._id = keep._id.toString();
-            }            
+            }
             await KeepService.saveKeep(keep)
             navigate('/keep')
         }
-        catch(error) {
+        catch (error) {
             console.log(error);
-            
+
         }
     }
 
     const handleInputChange = (event: any) => {
         const { name, value } = event.target;
         setKeep(prevKeep => ({
-          ...prevKeep,
-          [name]: value,
+            ...prevKeep,
+            [name]: value,
         }));
-      };
+    };
 
     if (!keep) return <div>loading</div>
     return (
         <div>
             <div>
                 <form onSubmit={keepSaved}>
-                    <input 
-                    type="text"
-                    id="title"
-                    name="title"
-                    value={keep.title}
-                    onChange={handleInputChange} />
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={keep.title}
+                        onChange={handleInputChange}
+                        placeholder="title" />
+
+                    <input
+                        type="text"
+                        id="description"
+                        name="description"
+                        value={keep.description}
+                        onChange={handleInputChange}
+                        placeholder="description" />
 
                     <button>Save</button>
                 </form>

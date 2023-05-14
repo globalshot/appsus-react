@@ -9,11 +9,14 @@
 
 /* Pages */
 @import 'pages/KeepPage.css';
+@import 'pages/MailPage.css';
 
 /* app */
 
 /* keep */
-@import 'apps/keep/pages/KeepList.css'
+@import 'apps/keep/components/KeepList.css';
 
+/* mail */
+@import 'apps/mail/components/MailList.css'
 
 /* Components */

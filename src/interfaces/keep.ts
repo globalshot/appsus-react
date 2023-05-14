@@ -1,9 +1,8 @@
-import { Key } from "react";
 
 export interface Keep {
     _id?: string,
-    // _id?: Key | string,
     title: string,
+    description?: string
 }
 
 export interface KeepListProps {
