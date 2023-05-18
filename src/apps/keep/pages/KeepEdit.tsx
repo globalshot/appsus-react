@@ -49,6 +49,8 @@ export function KeepEdit() {
         }));
     };
 
+    //now switch for types or smth
+
     if (!keep) return <div>loading</div>
     return (
         <div>

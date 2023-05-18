@@ -13,14 +13,6 @@
     transform: translate(-50%, 0%);
 }
 
-/* .keep-list-container{
-    display: flex;
-    column-count: 3;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-around;
-} */
-
 .keep-list-container{
     column-count: 5;
     list-style-type: none;
@@ -34,4 +26,9 @@
     display: block;
     margin: auto;
     text-align: center;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: radial-gradient(white, #dddada);
 }

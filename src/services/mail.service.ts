@@ -16,45 +16,50 @@ const STORAGE_KEY = 'mails'
 
 const gDefaultMails: Mail[] = [
     {
+        _id: 'hbasr',
         participants: ['me'],
         title: 'im cool',
         description: 'im cool',
         starred: false,
         important: false,
-        read: false
-    },
+        read: false,
+        },
     {
+        _id: 'gasdg',
         participants: ['you'],
         title: 'you are cool',
         description: 'like in the title, you are cool',
         starred: false,
         important: false,
-        read: false
-    },
+        read: false,
+        },
     {
+        _id: '56h234',
         participants: ['john'],
         title: 'dont look here john',
         description: 'but i looked inside',
         starred: true,
         important: true,
-        read: false
-    },
+        read: false,
+        },
     {
+        _id: 'h1b23',
         participants: ['don'],
         title: 'here what you needed',
         description: 'im testing everything',
         starred: false,
         important: false,
-        read: true
-    },
+        read: true,
+        },
     {
+        _id: '1g123',
         participants: ['did', 'fill'],
         title: 'we are group',
         description: 'so we are trio now',
         starred: true,
         important: false,
-        read: true
-    },
+        read: true,
+        },
 ];
 
 const gMails: Mail[] = _loadMails();
@@ -111,7 +116,7 @@ function _addMail(mail: Mail): Promise<Mail> {
 }
 
 function saveMail(mail: Mail): Promise<Mail> {
-    console.log('mail before saving', mail);
+    // console.log('mail before saving', mail);
     return mail._id ? _updateMail(mail) : _addMail(mail);
 }
 
@@ -122,7 +127,7 @@ function getEmptyMail(): Mail {
         description: '',
         starred: false,
         important: false,
-        read: false
+        read: false,
     };
 }
 

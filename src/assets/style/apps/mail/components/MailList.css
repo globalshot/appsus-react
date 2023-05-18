@@ -8,3 +8,16 @@
 .category-toggle{
     margin-inline: 10px;
 }
+
+.mail-sender{
+    min-width: 80px;
+}
+
+.mail-title{
+    font-weight: 600;
+    margin-inline-end: 10px;
+}
+
+.mail-description{
+    margin-inline-start: 10px;
+}

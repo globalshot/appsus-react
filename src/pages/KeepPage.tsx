@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { KeepList } from "../apps/keep/components/KeepList";
 import { Keep } from "../interfaces/keep";
 import { RootState } from '../interfaces/rootState.store';
-import { copyKeep, loadKeeps, removeKeep, setFilterBy } from '../store/actions/keep.actions';
+import { copyKeep, loadKeeps, removeKeep, setFilterBy, updateKeep } from '../store/actions/keep.actions';
 import { NavLink, useNavigate } from 'react-router-dom';
 import KeepService from '../services/keep.service';
 import { KeepFilter } from '../apps/keep/components/KeepFilter';
@@ -14,17 +14,15 @@ export function KeepPage() {
   const keeps: Keep[] = useSelector((storeState: RootState) => storeState.keepModule.keeps || [])
   const dispatch = useDispatch()
   const filterBy = useSelector((storeState: RootState) => storeState.keepModule.filterBy)
-  
+
   const filteredKeeps = keeps.filter((keep: Keep) => {
-    // Apply the filter here
     if (filterBy.title && keep.title.indexOf(filterBy.title) === -1) {
       return false
     }
-    // Add more filters as needed
     if (filterBy.title && keep.description && keep.description.indexOf(filterBy.title) === -1) {
       return false
     }
-    
+
     return true
   })
   const handleFilterChange = (filterBy: FilterBy) => {
@@ -65,6 +63,11 @@ export function KeepPage() {
   const handleUpdateKeep = (id: string) => {
     navigate({ pathname: `/keep/edit/${id}` })
   };
+
+  const handleBackgroundKeep = async (keep: Keep) => {
+    await KeepService.saveKeep(keep)
+    dispatch(updateKeep(keep) as any)
+  }
   if (!keeps) {
     return <div>Loading...</div>;
   }
@@ -72,13 +75,14 @@ export function KeepPage() {
     <div>
       <KeepFilter onFilterChange={handleFilterChange}></KeepFilter>
       <div className='keep-container'>
-      {/* change this to some form i guess and it auto save when you click outside if there input */}
-      <NavLink to='/keep/edit/:id?' className={'keep-add'}>add keep</NavLink>
+        {/* change this to some form i guess and it auto save when you click outside if there input */}
+        <NavLink to='/keep/edit/:id?' className={'keep-add'}>add keep</NavLink>
         <div className='keep-list'>
           <KeepList keeps={filteredKeeps}
             onDeleteKeep={handleDeleteKeep}
             onUpdateKeep={handleUpdateKeep}
             onCopyKeep={handleCopyKeep}
+            onChangeBackground={handleBackgroundKeep}
           ></KeepList>
         </div>
       </div>

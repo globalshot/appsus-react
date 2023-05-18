@@ -1,8 +1,11 @@
 import { Mail } from "./mail";
 
-
+export interface MailsFilterBy {
+  star: boolean;
+}
 export interface MailState {
     mails: Mail[] | null;
+    filterBy: MailsFilterBy
 }
 
 export const SET_MAILS = "SET_MAILS";
@@ -31,8 +34,14 @@ interface UpdateMailAction {
   mail: Mail;
 }
 
+interface SetMailsFilterByAction {
+  type: typeof SET_FILTER_BY;
+  filterBy: MailsFilterBy;
+}
+
 export type MailActionTypes =
   | SetMailsAction
   | AddMailAction
   | RemoveMailAction
-  | UpdateMailAction;
+  | UpdateMailAction
+  | SetMailsFilterByAction;

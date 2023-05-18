@@ -8,9 +8,10 @@ export interface Mail {
     starred: boolean,
     important: boolean,
     checkMark?: boolean,
-    read: boolean
+    read: boolean,
 }
 
 export interface MailListProps {
     mails: Mail[];
+    onToggleStar: (mail: Mail) => void;
 }

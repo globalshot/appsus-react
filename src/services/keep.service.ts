@@ -18,37 +18,44 @@ const gDefaultKeeps: Keep[] = [
     {
         _id: 'funny',
         title: 'im an title',
-        description: ''
+        description: 'and im description',
+        background: '#ffffff'
     },
     {
         _id: '1g123g',
         title: 'im 2nd',
-        description: ''
+        description: '',
+        background: '#ffffff'
     },
     {
         _id: '662g34',
         title: 'im 3nd',
-        description: ''
+        description: '',
+        background: '#ffffff'
     },
     {
         _id: 'gag3sx',
-        title: 'i wanna die',
-        description: ''
+        title: 'make more code',
+        description: '',
+        background: '#ffffff'
     },
     {
         _id: '1g23g',
-        title: 'i dont rlly want to die',
-        description: ''
+        title: 'continue making your code even bigger',
+        description: '',
+        background: '#ffffff'
     },
     {
         _id: 'aae3s',
         title: 'we gonna fly somehow',
-        description: ''
+        description: '',
+        background: '#ffffff'
     },
     {
         _id: 'itest',
         title: 'welp im testing',
-        description: ''
+        description: '',
+        background: '#ffffff'
     },
 ];
 
@@ -122,14 +129,15 @@ function _addKeep(keep: Keep): Promise<Keep> {
 }
 
 function saveKeep(keep: Keep): Promise<Keep> {
-    console.log('keep before saving', keep);
+    // console.log('keep before saving', keep);
     return keep._id ? _updateKeep(keep) : _addKeep(keep);
 }
 
 function getEmptyKeep(): Keep {
     return {
         title: '',
-        description: ''
+        description: '',
+        background: '#ffffff'
     };
 }
 

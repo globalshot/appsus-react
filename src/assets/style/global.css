@@ -17,6 +17,7 @@
 @import 'apps/keep/components/KeepList.css';
 
 /* mail */
-@import 'apps/mail/components/MailList.css'
+@import 'apps/mail/components/MailList.css';
 
 /* Components */
+@import 'components/AppHeader.css'
